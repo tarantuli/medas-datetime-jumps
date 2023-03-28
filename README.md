@@ -9,7 +9,7 @@ A jump with only a time definition will move the given time forward to the next 
 
 ````php
 
-$jump = new Jump(new Time(8, 0, 0));
+$jump = new Jump(time: new Time(8, 0, 0));
 
 $date = \DateTime::createFromFormat(DateTimeInterface::RFC3339, '2020-02-10T07:12:34+00:00');
 $newDate = service(JumpManager::class)->apply($jump, $date);

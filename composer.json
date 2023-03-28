@@ -1,6 +1,6 @@
 {
-    "name": "morphp/medas-placeholder",
-    "description": "Medas placeholder",
+    "name": "morphp/medas-datetime-jumps",
+    "description": "Medas datetime jumps",
     "authors": [
         {
             "name": "Patrick Morpey",
@@ -18,8 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Medas\\Placeholder\\": "src/",
-            "Medas\\PlaceholderTest\\": "tests/"
+            "Medas\\DateTimeJumps\\": "src/",
+            "Medas\\DateTimeJumpsTest\\": "tests/"
         }
     }
 }

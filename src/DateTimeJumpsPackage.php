@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Medas\Placeholder;
+namespace Medas\DateTimeJumps;
 
 use Medas\ServiceManager\{AsSingleton, BasePackage};
 
-class PlaceholderPackage extends BasePackage
+class DateTimeJumpsPackage extends BasePackage
 {
     use AsSingleton;
 

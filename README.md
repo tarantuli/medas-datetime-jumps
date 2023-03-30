@@ -5,7 +5,9 @@ Part of the [Medas framework](https://github.com/tarantuli/medas-core).
 Applies time interval jump definitions to dates.
 
 ## Time jump
-A jump with only a time definition will move the given time forward to the next instance of that time, either on the given date or on the next date.
+
+A jump with only a time definition will move the given time forward to the next instance of that time, either on the
+given date or on the next date.
 
 ````php
 $jump = new Jump(time: new Time(8, 0, 0));

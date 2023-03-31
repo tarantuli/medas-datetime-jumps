@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Medas\DateTimeJumps\Appliers;
+
+use Medas\DateTimeJumps\Jump;
+use Medas\ServiceManager\Attributes\Service;
+
+#[Service]
+class TimesOfDay
+{
+    public function apply(Jump $jump, \DateTime $source): void
+    {
+        $sourceTime = $source->format('H:i:s');
+
+        foreach ($jump->times as $time) {
+            $targetTime = $time->hhmmss();
+
+            if ($targetTime > $sourceTime) {
+                // Jump to this time
+                $source->modify($targetTime);
+                return;
+            }
+        }
+
+        // Jump to the first time, next day
+        $source->modify('+1 day ' . $jump->times[0]->hhmmss());
+    }
+}

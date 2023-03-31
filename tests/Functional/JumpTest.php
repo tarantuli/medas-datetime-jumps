@@ -55,5 +55,4 @@ class JumpTest extends TestCase
         $result = $this->apply($jump, '2020-02-10T20:00:00');
         self::assertEquals('2020-02-11T06:00:00', $result);
     }
-
 }

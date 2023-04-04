@@ -26,6 +26,17 @@ class JumpManager
     {
         $dateTime = $source ? clone $source : new \DateTime('now', date_default_timezone_get());
 
+        // First check for multiple times
+        if ($jump->times) {
+            $this->timesOfDay->apply($jump, $dateTime);
+            return $dateTime;
+        }
+
+        // All other jumps require time to be set
+        if (!$jump->time) {
+            throw new Exceptions\TimeIsNotSet($jump);
+        }
+
         if ($jump->weekDayOfMonth) {
             $this->nthWeekdayOfMonth->apply($jump, $dateTime);
             return $dateTime;
@@ -34,15 +45,6 @@ class JumpManager
         if ($jump->weekDay) {
             $this->nextDayOfWeek->apply($jump, $dateTime);
             return $dateTime;
-        }
-
-        if ($jump->times) {
-            $this->timesOfDay->apply($jump, $dateTime);
-            return $dateTime;
-        }
-
-        if (!$jump->time) {
-            throw new Exceptions\TimeIsNotSet($jump);
         }
 
         $this->timeJump->apply($jump, $dateTime);

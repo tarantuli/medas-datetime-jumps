@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de9bb06837d2e80fefdaebe466c05513",
+    "content-hash": "c895cc4ce82cbb2774ea5642dffba7b9",
     "packages": [
         {
             "name": "morphp/medas-console",
@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-core.git",
-                "reference": "9badbc336ed283c4ff622923e8cb5e2a45af51fc"
+                "reference": "43ca3b96b2d9246b871daff44c6f53f15066e656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-core/zipball/9badbc336ed283c4ff622923e8cb5e2a45af51fc",
-                "reference": "9badbc336ed283c4ff622923e8cb5e2a45af51fc",
+                "url": "https://api.github.com/repos/tarantuli/medas-core/zipball/43ca3b96b2d9246b871daff44c6f53f15066e656",
+                "reference": "43ca3b96b2d9246b871daff44c6f53f15066e656",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "source": "https://github.com/tarantuli/medas-core/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-core/issues"
             },
-            "time": "2023-02-28T09:54:13+00:00"
+            "time": "2023-03-30T14:36:10+00:00"
         },
         {
             "name": "morphp/medas-service-manager",
@@ -1883,6 +1883,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "morphp/medas-core": 20,
         "morphp/medas-service-manager": 20
     },
     "prefer-stable": true,

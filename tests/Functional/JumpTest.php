@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumpsTest\Functional;
 
-use DateTimeInterface;
-use Medas\DateTimeJumps\Jump;
-use Medas\DateTimeJumps\JumpManager;
-use Medas\DateTimeJumps\Time;
-use Medas\DateTimeJumps\WeekDay;
+use Medas\DateTimeJumps\{Jump, JumpManager, Time, WeekDay};
 use PHPUnit\Framework\TestCase;
 
 class JumpTest extends TestCase
@@ -22,8 +18,8 @@ class JumpTest extends TestCase
     private function apply(Jump $jump, string $dateTime): string
     {
         $string = service(JumpManager::class)
-            ->apply($jump, \DateTime::createFromFormat(DateTimeInterface::RFC3339, $dateTime . '+00:00'))
-            ->format(DateTimeInterface::RFC3339);
+            ->apply($jump, \DateTime::createFromFormat(\DateTimeInterface::RFC3339, $dateTime . '+00:00'))
+            ->format(\DateTimeInterface::RFC3339);
 
         return substr($string, 0, -6);
     }

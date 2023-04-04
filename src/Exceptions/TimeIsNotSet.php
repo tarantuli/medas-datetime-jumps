@@ -9,9 +9,7 @@ use Medas\DateTimeJumps\Jump;
 
 class TimeIsNotSet extends BaseException
 {
-    public function __construct(
-        Jump $jump,
-    )
+    public function __construct(Jump $jump)
     {
         parent::__construct(serialize($jump));
     }

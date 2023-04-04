@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps;
 
-use Medas\DateTimeJumps\Appliers\NextDayOfWeek;
-use Medas\DateTimeJumps\Appliers\NthWeekdayOfMonth;
-use Medas\DateTimeJumps\Appliers\TimeJump;
-use Medas\DateTimeJumps\Appliers\TimesOfDay;
+use Medas\DateTimeJumps\Appliers\{NextDayOfWeek, NthWeekdayOfMonth, TimeJump, TimesOfDay};
 use Medas\ServiceManager\Attributes\Service;
 
 #[Service]

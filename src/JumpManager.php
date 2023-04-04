@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps;
 
+use Medas\DateTimeJumps\Appliers\NextDayOfWeek;
 use Medas\DateTimeJumps\Appliers\TimeJump;
 use Medas\DateTimeJumps\Appliers\TimesOfDay;
 use Medas\ServiceManager\Attributes\Service;
@@ -12,8 +13,9 @@ use Medas\ServiceManager\Attributes\Service;
 class JumpManager
 {
     public function __construct(
-        private readonly TimeJump   $timeJump,
-        private readonly TimesOfDay $timesOfDay,
+        private readonly TimeJump      $timeJump,
+        private readonly TimesOfDay    $timesOfDay,
+        private readonly NextDayOfWeek $nextDayOfWeek,
     )
     {
     }
@@ -21,6 +23,11 @@ class JumpManager
     public function apply(Jump $jump, \DateTime $source = null): \DateTime
     {
         $dateTime = $source ? clone $source : new \DateTime('now', date_default_timezone_get());
+
+        if ($jump->weekDay) {
+            $this->nextDayOfWeek->apply($jump, $dateTime);
+            return $dateTime;
+        }
 
         if ($jump->times) {
             $this->timesOfDay->apply($jump, $dateTime);

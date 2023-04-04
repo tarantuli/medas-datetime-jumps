@@ -7,9 +7,12 @@ namespace Medas\DateTimeJumps;
 class Jump
 {
     public function __construct(
-        public readonly Time|null  $time,
+        public readonly Time|null    $time,
         /** @var Time[] */
-        public readonly array|null $times = null,
+        public readonly array|null   $times = null,
+        public readonly WeekDay|null $weekDay = null,
+        /** @var WeekDay[] */
+        public readonly array|null   $weekDays = null,
     )
     {
     }

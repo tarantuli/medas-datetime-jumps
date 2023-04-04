@@ -72,16 +72,60 @@ class JumpTest extends TestCase
         $result = $this->apply($jump, '2023-04-03T00:00:00');
         self::assertEquals('2023-04-07T08:00:00', $result);
 
-        // Friday morning
+        // Friday before 8:00
         $result = $this->apply($jump, '2023-04-07T03:00:00');
         self::assertEquals('2023-04-07T08:00:00', $result);
 
-        // Friday afternoon
+        // Friday after 08:00
         $result = $this->apply($jump, '2023-04-07T13:00:00');
         self::assertEquals('2023-04-14T08:00:00', $result);
 
         // Sunday
         $result = $this->apply($jump, '2023-04-09T13:00:00');
         self::assertEquals('2023-04-14T08:00:00', $result);
+    }
+
+    public function testJumpFirstWeekDayOfMonth(): void
+    {
+        // Jump to 8:00 on first Monday of the month
+        $jump = new Jump(time: new Time(8), weekDayOfMonth: WeekDay::Monday);
+
+        // Forward from Saturday
+        $result = $this->apply($jump, '2023-04-01T13:00:00');
+        self::assertEquals('2023-04-03T08:00:00', $result);
+
+        // Forward on same day
+        $result = $this->apply($jump, '2023-04-03T00:00:00');
+        self::assertEquals('2023-04-03T08:00:00', $result);
+
+        // Forward to next month from same day
+        $result = $this->apply($jump, '2023-04-03T12:00:00');
+        self::assertEquals('2023-05-01T08:00:00', $result);
+
+        // Forward to next month from later in the month
+        $result = $this->apply($jump, '2023-04-30T12:00:00');
+        self::assertEquals('2023-05-01T08:00:00', $result);
+    }
+
+    public function testJumpLastWeekDayOfMonth(): void
+    {
+        // Jump to 8:00 on first Monday of the month
+        $jump = new Jump(time: new Time(8), nthWeekDayOfMonth: -1, weekDayOfMonth: WeekDay::Monday);
+
+        // Forward from Saturday
+        $result = $this->apply($jump, '2023-04-01T13:00:00');
+        self::assertEquals('2023-04-24T08:00:00', $result);
+
+        // Forward on same day
+        $result = $this->apply($jump, '2023-04-24T00:00:00');
+        self::assertEquals('2023-04-24T08:00:00', $result);
+
+        // Forward to next month from same day
+        $result = $this->apply($jump, '2023-04-24T12:00:00');
+        self::assertEquals('2023-05-29T08:00:00', $result);
+
+        // Forward to next month from later in the month
+        $result = $this->apply($jump, '2023-04-30T12:00:00');
+        self::assertEquals('2023-05-29T08:00:00', $result);
     }
 }

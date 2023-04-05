@@ -21,7 +21,7 @@ class JumpManager
 
     public function apply(Jump $jump, \DateTime $source = null): \DateTime
     {
-        $dateTime = $source ? clone $source : new \DateTime('now', date_default_timezone_get());
+        $dateTime = $source ? clone $source : new \DateTime('now', new \DateTimeZone(date_default_timezone_get()));
 
         // First check for multiple times
         if ($jump->times) {

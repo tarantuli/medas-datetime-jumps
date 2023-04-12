@@ -7,70 +7,24 @@
     "content-hash": "c895cc4ce82cbb2774ea5642dffba7b9",
     "packages": [
         {
-            "name": "morphp/medas-console",
-            "version": "dev-dev",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:tarantuli/medas-console.git",
-                "reference": "e25c46655575c7e4494589c9f6e9fc2a99cb2051"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-console/zipball/e25c46655575c7e4494589c9f6e9fc2a99cb2051",
-                "reference": "e25c46655575c7e4494589c9f6e9fc2a99cb2051",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-service-manager": "dev-dev"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-dev": "0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Medas\\Console\\": "src/",
-                    "Medas\\ConsoleTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas console",
-            "support": {
-                "source": "https://github.com/tarantuli/medas-console/tree/dev",
-                "issues": "https://github.com/tarantuli/medas-console/issues"
-            },
-            "time": "2023-02-17T13:39:45+00:00"
-        },
-        {
             "name": "morphp/medas-core",
             "version": "dev-dev",
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-core.git",
-                "reference": "43ca3b96b2d9246b871daff44c6f53f15066e656"
+                "reference": "bdb77d909edd4242bca7e93a410a6f1917d66c8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-core/zipball/43ca3b96b2d9246b871daff44c6f53f15066e656",
-                "reference": "43ca3b96b2d9246b871daff44c6f53f15066e656",
+                "url": "https://api.github.com/repos/tarantuli/medas-core/zipball/bdb77d909edd4242bca7e93a410a6f1917d66c8b",
+                "reference": "bdb77d909edd4242bca7e93a410a6f1917d66c8b",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
-                "morphp/medas-service-manager": "dev-dev"
+                "ext-mbstring": "*"
             },
             "require-dev": {
+                "morphp/medas-service-manager": "dev-dev",
                 "phpunit/phpunit": "^9"
             },
             "default-branch": true,
@@ -97,54 +51,7 @@
                 "source": "https://github.com/tarantuli/medas-core/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-core/issues"
             },
-            "time": "2023-03-30T14:36:10+00:00"
-        },
-        {
-            "name": "morphp/medas-service-manager",
-            "version": "dev-dev",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:tarantuli/medas-service-manager.git",
-                "reference": "3c30bc5771133d4a81ec899bfe36fc6f7c06ceff"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-service-manager/zipball/3c30bc5771133d4a81ec899bfe36fc6f7c06ceff",
-                "reference": "3c30bc5771133d4a81ec899bfe36fc6f7c06ceff",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-console": "dev-dev",
-                "morphp/medas-core": "dev-dev"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-dev": "0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Medas\\ServiceManager\\": "src/",
-                    "Medas\\ServiceManagerTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas service manager",
-            "support": {
-                "source": "https://github.com/tarantuli/medas-service-manager/tree/dev",
-                "issues": "https://github.com/tarantuli/medas-service-manager/issues"
-            },
-            "time": "2023-03-09T11:17:33+00:00"
+            "time": "2023-04-12T11:03:43+00:00"
         }
     ],
     "packages-dev": [
@@ -217,6 +124,99 @@
                 }
             ],
             "time": "2022-12-30T00:23:10+00:00"
+        },
+        {
+            "name": "morphp/medas-console",
+            "version": "dev-dev",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:tarantuli/medas-console.git",
+                "reference": "6d36a5efd48b15fa9f342f376c68ccd8404a1c4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-console/zipball/6d36a5efd48b15fa9f342f376c68ccd8404a1c4e",
+                "reference": "6d36a5efd48b15fa9f342f376c68ccd8404a1c4e",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-service-manager": "dev-dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-dev": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Medas\\Console\\": "src/",
+                    "Medas\\ConsoleTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas console",
+            "support": {
+                "source": "https://github.com/tarantuli/medas-console/tree/dev",
+                "issues": "https://github.com/tarantuli/medas-console/issues"
+            },
+            "time": "2023-04-12T11:18:23+00:00"
+        },
+        {
+            "name": "morphp/medas-service-manager",
+            "version": "dev-dev",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:tarantuli/medas-service-manager.git",
+                "reference": "8b0ae631766fd8a931e0c5819c98815dfb27e01d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-service-manager/zipball/8b0ae631766fd8a931e0c5819c98815dfb27e01d",
+                "reference": "8b0ae631766fd8a931e0c5819c98815dfb27e01d",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-console": "dev-dev",
+                "morphp/medas-core": "dev-dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-dev": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Medas\\ServiceManager\\": "src/",
+                    "Medas\\ServiceManagerTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas service manager",
+            "support": {
+                "source": "https://github.com/tarantuli/medas-service-manager/tree/dev",
+                "issues": "https://github.com/tarantuli/medas-service-manager/issues"
+            },
+            "time": "2023-04-12T10:03:22+00:00"
         },
         {
             "name": "myclabs/deep-copy",

@@ -6,7 +6,7 @@ namespace Medas\DateTimeJumps\Appliers;
 
 use Medas\DateTimeJumps\Jump;
 use Medas\DateTimeJumps\WeekDay;
-use Medas\ServiceManager\Attributes\Service;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class NextDayOfWeek

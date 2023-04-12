@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Medas\DateTimeJumps;
 
 use Medas\DateTimeJumps\Appliers\{NextDayOfWeek, NthWeekdayOfMonth, TimeJump, TimesOfDay};
-use Medas\ServiceManager\Attributes\Service;
+use Medas\ServiceManager\Service;
 
 #[Service]
 class JumpManager

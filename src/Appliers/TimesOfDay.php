@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps\Appliers;
 
+use Medas\Core\Attributes\Service;
 use Medas\DateTimeJumps\Jump;
-use Medas\ServiceManager\Service;
 
 #[Service]
 class TimesOfDay

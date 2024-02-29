@@ -14,7 +14,6 @@ class NthWeekdayOfMonth
     {
         $sourceTime = $source->format('H:i:s');
         $targetTime = $jump->time->hhmmss();
-
         $targetDay = $this->getDayInSourceMonth($jump, $source);
         $sourceDay = (int) $source->format('j');
 
@@ -32,11 +31,15 @@ class NthWeekdayOfMonth
     private function getDayInSourceMonth(Jump $jump, \DateTime $source): int
     {
         if ($jump->nthWeekDayOfMonth >= 1) {
-            $firstWeekdayInMonth = (clone $source)->modify('first ' . $jump->weekDayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+            $firstWeekdayInMonth
+                = (clone $source)->modify('first ' . $jump->weekDayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+
             return (int) $firstWeekdayInMonth->format('j') + 7 * ($jump->nthWeekDayOfMonth - 1);
         }
         else {
-            $lastWeekdayInMonth = (clone $source)->modify('last ' . $jump->weekDayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+            $lastWeekdayInMonth
+                = (clone $source)->modify('last ' . $jump->weekDayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+
             return (int) $lastWeekdayInMonth->format('j') + 7 * ($jump->nthWeekDayOfMonth + 1);
         }
     }

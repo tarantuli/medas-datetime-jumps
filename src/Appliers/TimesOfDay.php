@@ -20,6 +20,7 @@ class TimesOfDay
             if ($targetTime > $sourceTime) {
                 // Jump to this time
                 $source->modify($targetTime);
+
                 return;
             }
         }

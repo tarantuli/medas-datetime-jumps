@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Medas\DateTimeJumps\Appliers;
 
 use Medas\Core\Attributes\Service;
-use Medas\DateTimeJumps\Jump;
-use Medas\DateTimeJumps\WeekDay;
+use Medas\DateTimeJumps\{Jump, WeekDay};
 
 #[Service]
 class NextDayOfWeek
@@ -15,7 +14,6 @@ class NextDayOfWeek
     {
         $sourceWeekday = WeekDay::from((int) $source->format('N'));
         $sourceTime = $source->format('H:i:s');
-
         $targetWeekday = $jump->weekDay;
         $targetTime = $jump->time->hhmmss();
 

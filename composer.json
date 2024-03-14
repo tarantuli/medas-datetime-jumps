@@ -1,6 +1,9 @@
 {
     "name": "morphp/medas-datetime-jumps",
     "description": "Medas datetime jumps",
+    "keywords": [
+        "data manipulation"
+    ],
     "authors": [
         {
             "name": "Patrick Morpey",

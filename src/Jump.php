@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps;
 
-class Jump
+readonly class Jump
 {
     public function __construct(
-        public readonly Time|null    $time,
+        public Time|null    $time,
 
         /** @var Time[] */
-        public readonly array|null   $times = null,
-        public readonly WeekDay|null $weekDay = null,
+        public array|null   $times = null,
+        public WeekDay|null $weekDay = null,
 
         /** @var WeekDay[] */
-        public readonly array|null   $weekDays = null,
+        public array|null   $weekDays = null,
 
         /**
          *  1 = first week day of the month  \
@@ -22,8 +22,8 @@ class Jump
          * -1 = last week day of month  \
          * -2 = second to last...
          */
-        public readonly int          $nthWeekDayOfMonth = 1,
-        public readonly WeekDay|null $weekDayOfMonth = null,
+        public int          $nthWeekDayOfMonth = 1,
+        public WeekDay|null $weekDayOfMonth = null,
     )
     {
     }

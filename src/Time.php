@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps;
 
-class Time
+readonly class Time
 {
     public function __construct(
-        public readonly int $hour,
-        public readonly int $minutes = 0,
-        public readonly int $seconds = 0,
+        public int $hour,
+        public int $minutes = 0,
+        public int $seconds = 0,
     )
     {
     }

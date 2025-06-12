@@ -7,13 +7,13 @@ namespace Medas\DateTimeJumps;
 use Medas\Core\Attributes\Service;
 
 #[Service]
-class JumpManager
+readonly class JumpManager
 {
     public function __construct(
-        private readonly Appliers\NextDayOfWeek     $nextDayOfWeek,
-        private readonly Appliers\NthWeekdayOfMonth $nthWeekdayOfMonth,
-        private readonly Appliers\TimeJump          $timeJump,
-        private readonly Appliers\TimesOfDay        $timesOfDay,
+        private Appliers\NextDayOfWeek     $nextDayOfWeek,
+        private Appliers\NthWeekdayOfMonth $nthWeekdayOfMonth,
+        private Appliers\TimeJump          $timeJump,
+        private Appliers\TimesOfDay        $timesOfDay,
     )
     {
     }

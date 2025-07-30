@@ -68,7 +68,8 @@ readonly class JumpHandler implements PropertyHandler
             $times = [];
 
             foreach ($data['times'] as $time) {
-                $times[] = new Time(...explode(':', $time));
+                $parts = explode(':', $time);
+                $times[] = new Time((int) $parts[0], (int) $parts[1], (int) $parts[2]);
             }
 
             return new Jump(times: $times);
@@ -78,7 +79,8 @@ readonly class JumpHandler implements PropertyHandler
             throw new Exceptions\CannotUnserializeValueToJump($value, 'time is not set');
         }
 
-        $time = new Time(...explode(':', $data['time']));
+        $parts = explode(':', $data['time']);
+        $time = new Time((int) $parts[0], (int) $parts[1], (int) $parts[2]);
 
         if (array_key_exists('weekDayOfMonth', $data) && array_key_exists('nthWeekDayOfMonth', $data)) {
             return new Jump(

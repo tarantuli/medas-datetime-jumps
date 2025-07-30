@@ -14,8 +14,12 @@ readonly class JumpHandler implements PropertyHandler
         return new Text();
     }
 
-    public function serialize(mixed $value): string
+    public function serialize(mixed $value): string|null
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!$value instanceof Jump) {
             throw new Exceptions\ValueMustBeInstanceOfJump($value);
         }
@@ -44,8 +48,12 @@ readonly class JumpHandler implements PropertyHandler
         ]);
     }
 
-    public function unserialize(mixed $value): Jump
+    public function unserialize(mixed $value): Jump|null
     {
+        if ($value === null) {
+            return null;
+        }
+
         $data = json_decode($value, true);
 
         if (array_key_exists('times', $data)) {

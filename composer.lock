@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:tarantuli/medas-core.git",
-                "reference": "4429ed314ebb69d87bde2d75fdfbb0d34afffe42"
+                "reference": "5603d1eac6eaf6c0a1ba2d88387498ebdcb622dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-core/zipball/4429ed314ebb69d87bde2d75fdfbb0d34afffe42",
-                "reference": "4429ed314ebb69d87bde2d75fdfbb0d34afffe42",
+                "url": "https://api.github.com/repos/tarantuli/medas-core/zipball/5603d1eac6eaf6c0a1ba2d88387498ebdcb622dc",
+                "reference": "5603d1eac6eaf6c0a1ba2d88387498ebdcb622dc",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
                 "source": "https://github.com/tarantuli/medas-core/tree/dev",
                 "issues": "https://github.com/tarantuli/medas-core/issues"
             },
-            "time": "2025-07-30T08:35:25+00:00"
+            "time": "2025-07-30T14:33:05+00:00"
         },
         {
             "name": "psr/event-dispatcher",

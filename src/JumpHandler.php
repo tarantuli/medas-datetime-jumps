@@ -25,12 +25,20 @@ readonly class JumpHandler implements PropertyHandler
         }
 
         if ($value->times) {
-            return json_encode(['times' => $value->times]);
+            $times = [];
+
+            foreach ($value->times as $time) {
+                $times[] = $time->hhmmss();
+            }
+
+            return json_encode(['times' => $times]);
         }
+
+        $time = $value->time->hhmmss();
 
         if ($value->weekDayOfMonth) {
             return json_encode([
-                'time' => $value->time,
+                'time' => $time,
                 'weekDayOfMonth' => $value->weekDayOfMonth->value,
                 'nthWeekDayOfMonth' => $value->nthWeekDayOfMonth,
             ]);
@@ -38,13 +46,13 @@ readonly class JumpHandler implements PropertyHandler
 
         if ($value->weekDay) {
             return json_encode([
-                'time' => $value->time,
+                'time' => $time,
                 'weekDay' => $value->weekDay->value,
             ]);
         }
 
         return json_encode([
-            'time' => $value->time,
+            'time' => $time,
         ]);
     }
 
@@ -57,16 +65,24 @@ readonly class JumpHandler implements PropertyHandler
         $data = json_decode($value, true);
 
         if (array_key_exists('times', $data)) {
-            return new Jump(times: $data['times']);
+            $times = [];
+
+            foreach ($data['times'] as $time) {
+                $times[] = new Time(...explode(':', $time));
+            }
+
+            return new Jump(times: $times);
         }
 
         if (!array_key_exists('time', $data)) {
             throw new Exceptions\CannotUnserializeValueToJump($value, 'time is not set');
         }
 
+        $time = new Time(...explode(':', $data['time']));
+
         if (array_key_exists('weekDayOfMonth', $data) && array_key_exists('nthWeekDayOfMonth', $data)) {
             return new Jump(
-                time: $data['time'],
+                time: $time,
                 nthWeekDayOfMonth: $data['nthWeekDayOfMonth'],
                 weekDayOfMonth: WeekDay::from($data['weekDayOfMonth']),
             );
@@ -74,13 +90,13 @@ readonly class JumpHandler implements PropertyHandler
 
         if (array_key_exists('weekDay', $data)) {
             return new Jump(
-                time: $data['time'],
+                time: $time,
                 weekDay: WeekDay::from($data['weekDay']),
             );
         }
 
         return new Jump(
-            time: $data['time'],
+            time: $time,
         );
     }
 }

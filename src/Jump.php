@@ -27,7 +27,6 @@ readonly class Jump
          * -2 = second to last...
          */
         public int          $nthWeekDayOfMonth = 1,
-        public WeekDay|null $weekDayOfMonth = null,
     )
     {
     }

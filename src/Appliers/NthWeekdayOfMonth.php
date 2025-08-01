@@ -32,13 +32,13 @@ class NthWeekdayOfMonth
     {
         if ($jump->nthWeekdayOfMonth >= 1) {
             $firstWeekdayInMonth
-                = (clone $source)->modify('first ' . $jump->weekdayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+                = (clone $source)->modify('first ' . $jump->weekday->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
 
             return (int) $firstWeekdayInMonth->format('j') + 7 * ($jump->nthWeekdayOfMonth - 1);
         }
         else {
             $lastWeekdayInMonth
-                = (clone $source)->modify('last ' . $jump->weekdayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+                = (clone $source)->modify('last ' . $jump->weekday->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
 
             return (int) $lastWeekdayInMonth->format('j') + 7 * ($jump->nthWeekdayOfMonth + 1);
         }

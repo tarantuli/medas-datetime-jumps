@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps\Appliers;
 
-use Medas\DateTimeJumps\{Jump, WeekDay};
 use Medas\Core\Attributes\Service;
 use Medas\DateTimeJumps\{Jump, Weekday};
 

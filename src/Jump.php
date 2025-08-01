@@ -10,6 +10,7 @@ use Medas\Core\Attributes\DumpObject;
 readonly class Jump
 {
     public function __construct(
+        public Type         $type,
         public Time|null    $time = null,
 
         /** @var Time[] */

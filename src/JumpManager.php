@@ -25,7 +25,7 @@ readonly class JumpManager
             : new \DateTime('now', new \DateTimeZone(date_default_timezone_get()));
 
         // First check for multiple times
-        if ($jump->times) {
+        if ($jump->type === Type::MultipleTimesOfDay) {
             $this->timesOfDay->apply($jump, $dateTime);
 
             return $dateTime;
@@ -36,20 +36,24 @@ readonly class JumpManager
             throw new Exceptions\TimeIsNotSet($jump);
         }
 
-        if ($jump->weekDayOfMonth) {
+        if ($jump->type === Type::NthWeekdayOfMonth) {
             $this->nthWeekdayOfMonth->apply($jump, $dateTime);
 
             return $dateTime;
         }
 
-        if ($jump->weekDay) {
+        if ($jump->type === Type::NextDayOfWeek) {
             $this->nextDayOfWeek->apply($jump, $dateTime);
 
             return $dateTime;
         }
 
-        $this->timeJump->apply($jump, $dateTime);
+        if ($jump->type === Type::TimeJump) {
+            $this->timeJump->apply($jump, $dateTime);
 
-        return $dateTime;
+            return $dateTime;
+        }
+
+        throw new Exceptions\JumpTypeNotImplemented($jump->type);
     }
 }

@@ -30,17 +30,17 @@ class NthWeekdayOfMonth
 
     private function getDayInSourceMonth(Jump $jump, \DateTime $source): int
     {
-        if ($jump->nthWeekDayOfMonth >= 1) {
+        if ($jump->nthWeekdayOfMonth >= 1) {
             $firstWeekdayInMonth
-                = (clone $source)->modify('first ' . $jump->weekDayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+                = (clone $source)->modify('first ' . $jump->weekdayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
 
-            return (int) $firstWeekdayInMonth->format('j') + 7 * ($jump->nthWeekDayOfMonth - 1);
+            return (int) $firstWeekdayInMonth->format('j') + 7 * ($jump->nthWeekdayOfMonth - 1);
         }
         else {
             $lastWeekdayInMonth
-                = (clone $source)->modify('last ' . $jump->weekDayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
+                = (clone $source)->modify('last ' . $jump->weekdayOfMonth->name . ' of ' . $source->format('F') . ' ' . $source->format('Y'));
 
-            return (int) $lastWeekdayInMonth->format('j') + 7 * ($jump->nthWeekDayOfMonth + 1);
+            return (int) $lastWeekdayInMonth->format('j') + 7 * ($jump->nthWeekdayOfMonth + 1);
         }
     }
 }

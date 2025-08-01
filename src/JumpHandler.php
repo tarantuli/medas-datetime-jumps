@@ -48,8 +48,8 @@ readonly class JumpHandler implements PropertyHandler
             return json_encode([
                 'type' => $value->type,
                 'time' => $time,
-                'weekDayOfMonth' => $value->weekDay->value,
-                'nthWeekDayOfMonth' => $value->nthWeekDayOfMonth,
+                'weekdayOfMonth' => $value->weekday->value,
+                'nthWeekdayOfMonth' => $value->nthWeekdayOfMonth,
             ]);
         }
 
@@ -57,7 +57,7 @@ readonly class JumpHandler implements PropertyHandler
             return json_encode([
                 'type' => $value->type,
                 'time' => $time,
-                'weekDay' => $value->weekDay->value,
+                'weekday' => $value->weekday->value,
             ]);
         }
 
@@ -98,34 +98,34 @@ readonly class JumpHandler implements PropertyHandler
         $time = new Time((int) $parts[0], (int) $parts[1], (int) $parts[2]);
 
         if ($data['type'] === Type::NthWeekdayOfMonth) {
-            if (!array_key_exists('weekDay', $data)) {
-                throw new Exceptions\CannotUnserializeValueToJump($value, 'weekDay is not set');
+            if (!array_key_exists('weekday', $data)) {
+                throw new Exceptions\CannotUnserializeValueToJump($value, 'weekday is not set');
             }
 
-            if (!array_key_exists('nthWeekDayOfMonth', $data)) {
+            if (!array_key_exists('nthWeekdayOfMonth', $data)) {
                 throw new Exceptions\CannotUnserializeValueToJump(
                     $value,
-                    'nthWeekDayOfMonth is not set'
+                    'nthWeekdayOfMonth is not set'
                 );
             }
 
             return new Jump(
                 type: Type::NthWeekdayOfMonth,
                 time: $time,
-                weekDay: WeekDay::from($data['weekDay']),
-                nthWeekDayOfMonth: $data['nthWeekDayOfMonth'],
+                weekday: Weekday::from($data['weekday']),
+                nthWeekdayOfMonth: $data['nthWeekdayOfMonth'],
             );
         }
 
         if ($data['type'] === Type::NextDayOfWeek) {
-            if (!array_key_exists('weekDay', $data)) {
-                throw new Exceptions\CannotUnserializeValueToJump($value, 'weekDay is not set');
+            if (!array_key_exists('weekday', $data)) {
+                throw new Exceptions\CannotUnserializeValueToJump($value, 'weekday is not set');
             }
 
             return new Jump(
                 type: Type::NextDayOfWeek,
                 time: $time,
-                weekDay: WeekDay::from($data['weekDay']),
+                weekday: Weekday::from($data['weekday']),
             );
         }
 

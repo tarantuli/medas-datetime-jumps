@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumpsTest\Functional;
 
-use Medas\DateTimeJumps\{Jump, JumpManager, Time, WeekDay};
+use Medas\DateTimeJumps\{Jump, JumpManager, Time, Weekday};
 use PHPUnit\Framework\TestCase;
 
 class JumpTest extends TestCase
@@ -62,7 +62,7 @@ class JumpTest extends TestCase
     public function testJumpNextDayOfWeek(): void
     {
         // Jump to 8:00 on Friday
-        $jump = new Jump(time: new Time(8), weekDay: WeekDay::Friday);
+        $jump = new Jump(time: new Time(8), weekday: Weekday::Friday);
 
         // Monday
         $result = $this->apply($jump, '2023-04-03T00:00:00');
@@ -81,10 +81,10 @@ class JumpTest extends TestCase
         self::assertEquals('2023-04-14T08:00:00', $result);
     }
 
-    public function testJumpFirstWeekDayOfMonth(): void
+    public function testJumpFirstWeekdayOfMonth(): void
     {
         // Jump to 8:00 on the first Monday of the month
-        $jump = new Jump(time: new Time(8), weekDayOfMonth: WeekDay::Monday);
+        $jump = new Jump(time: new Time(8), weekdayOfMonth: Weekday::Monday);
 
         // Forward from Saturday
         $result = $this->apply($jump, '2023-04-01T13:00:00');
@@ -103,10 +103,10 @@ class JumpTest extends TestCase
         self::assertEquals('2023-05-01T08:00:00', $result);
     }
 
-    public function testJumpLastWeekDayOfMonth(): void
+    public function testJumpLastWeekdayOfMonth(): void
     {
         // Jump to 8:00 on the last Monday of the month
-        $jump = new Jump(time: new Time(8), nthWeekDayOfMonth: -1, weekDayOfMonth: WeekDay::Monday);
+        $jump = new Jump(time: new Time(8), nthWeekdayOfMonth: -1, weekdayOfMonth: Weekday::Monday);
 
         // Forward from Saturday
         $result = $this->apply($jump, '2023-04-01T13:00:00');

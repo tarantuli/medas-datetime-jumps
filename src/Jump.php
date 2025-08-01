@@ -15,10 +15,10 @@ readonly class Jump
 
         /** @var Time[] */
         public array|null   $times = null,
-        public WeekDay|null $weekDay = null,
+        public Weekday|null $weekday = null,
 
-        /** @var WeekDay[] */
-        public array|null   $weekDays = null,
+        /** @var Weekday[] */
+        public array|null   $weekdays = null,
 
         /**
          *  1 = first week day of the month  \
@@ -26,7 +26,7 @@ readonly class Jump
          * -1 = last week day of the month  \
          * -2 = second to last...
          */
-        public int          $nthWeekDayOfMonth = 1,
+        public int          $nthWeekdayOfMonth = 1,
     )
     {
     }

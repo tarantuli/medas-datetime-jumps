@@ -7,7 +7,7 @@ namespace Medas\DateTimeJumps;
 /**
  * Equal to date format specifier "N": ISO 8601 numeric representation of the day of the week
  */
-enum WeekDay: int
+enum Weekday: int
 {
     case Monday = 1;
     case Tuesday = 2;

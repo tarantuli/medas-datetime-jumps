@@ -48,7 +48,7 @@ readonly class JumpHandler implements PropertyHandler
             return json_encode([
                 'type' => $value->type,
                 'time' => $time,
-                'weekdayOfMonth' => $value->weekday->value,
+                'weekday' => $value->weekday->value,
                 'nthWeekdayOfMonth' => $value->nthWeekdayOfMonth,
             ]);
         }
@@ -75,7 +75,7 @@ readonly class JumpHandler implements PropertyHandler
 
         $data = json_decode($value, true);
 
-        if ($data['type'] === Type::MultipleTimesOfDay) {
+        if ($data['type'] === Type::MultipleTimesOfDay->value) {
             if (!array_key_exists('times', $data)) {
                 throw new Exceptions\CannotUnserializeValueToJump($value, 'times is not set');
             }
@@ -97,7 +97,7 @@ readonly class JumpHandler implements PropertyHandler
         $parts = explode(':', $data['time']);
         $time = new Time((int) $parts[0], (int) $parts[1], (int) $parts[2]);
 
-        if ($data['type'] === Type::NthWeekdayOfMonth) {
+        if ($data['type'] === Type::NthWeekdayOfMonth->value) {
             if (!array_key_exists('weekday', $data)) {
                 throw new Exceptions\CannotUnserializeValueToJump($value, 'weekday is not set');
             }
@@ -117,7 +117,7 @@ readonly class JumpHandler implements PropertyHandler
             );
         }
 
-        if ($data['type'] === Type::NextDayOfWeek) {
+        if ($data['type'] === Type::NextDayOfWeek->value) {
             if (!array_key_exists('weekday', $data)) {
                 throw new Exceptions\CannotUnserializeValueToJump($value, 'weekday is not set');
             }

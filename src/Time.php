@@ -8,14 +8,14 @@ readonly class Time
 {
     public function __construct(
         public int $hour,
-        public int $minutes = 0,
-        public int $seconds = 0,
+        public int $minute = 0,
+        public int $second = 0,
     )
     {
     }
 
     public function hhmmss(): string
     {
-        return sprintf('%02u:%02u:%02u', $this->hour, $this->minutes, $this->seconds);
+        return sprintf('%02u:%02u:%02u', $this->hour, $this->minute, $this->second);
     }
 }

@@ -18,7 +18,7 @@ readonly class JumpManager
     {
     }
 
-    public function apply(Jump $jump, \DateTime $source = null): \DateTime
+    public function apply(Jump $jump, ?\DateTime $source = null): \DateTime
     {
         $dateTime = $source
             ? clone $source

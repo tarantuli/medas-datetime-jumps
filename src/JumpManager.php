@@ -10,15 +10,16 @@ use Medas\Core\Attributes\Service;
 readonly class JumpManager
 {
     public function __construct(
-        private Appliers\NextDayOfWeek     $nextDayOfWeek,
-        private Appliers\NthWeekdayOfMonth $nthWeekdayOfMonth,
-        private Appliers\TimeJump          $timeJump,
-        private Appliers\TimesOfDay        $timesOfDay,
+        private Appliers\NextDayOfWeek       $nextDayOfWeek,
+        private Appliers\NthWeekdayOfMonth   $nthWeekdayOfMonth,
+        private Appliers\NthWeekdayOfQuarter $nthWeekdayOfQuarter,
+        private Appliers\TimeJump            $timeJump,
+        private Appliers\TimesOfDay          $timesOfDay,
     )
     {
     }
 
-    public function apply(Jump $jump, ?\DateTime $source = null): \DateTime
+    public function apply(Jump $jump, \DateTime|null $source = null): \DateTime
     {
         $dateTime = $source
             ? clone $source
@@ -38,6 +39,12 @@ readonly class JumpManager
 
         if ($jump->type === Type::NthWeekdayOfMonth) {
             $this->nthWeekdayOfMonth->apply($jump, $dateTime);
+
+            return $dateTime;
+        }
+
+        if ($jump->type === Type::NthWeekdayOfQuarter) {
+            $this->nthWeekdayOfQuarter->apply($jump, $dateTime);
 
             return $dateTime;
         }

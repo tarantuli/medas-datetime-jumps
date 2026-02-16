@@ -145,6 +145,43 @@ class JumpTest extends TestCase
         self::assertEquals('2023-05-29T08:00:00', $result);
     }
 
+    public function testJumpFirstWeekdayOfQuarter(): void
+    {
+        // First Monday of the quarter at 08:00.
+        // For 2023-04-xx, the quarter is Q2 starting 2023-04-01; the first Monday is 2023-04-03.
+        $jump = new Jump(Type::NthWeekdayOfQuarter, time: new Time(8), weekday: Weekday::Monday);
+        $result = $this->apply($jump, '2023-04-01T13:00:00');
+
+        self::assertEquals('2023-04-03T08:00:00', $result);
+
+        // If we're already past the target moment, we should jump to next quarter's first Monday.
+        // Q3 2023 starts 2023-07-01, the first Monday is 2023-07-03.
+        $result = $this->apply($jump, '2023-04-03T12:00:00');
+
+        self::assertEquals('2023-07-03T08:00:00', $result);
+    }
+
+    public function testJumpLastWeekdayOfQuarter(): void
+    {
+        // Last Monday of the quarter at 08:00.
+        // Q2 2023 ends 2023-06-30, last Monday in Q2 is 2023-06-26.
+        $jump = new Jump(
+            Type::NthWeekdayOfQuarter,
+            time: new Time(8),
+            weekday: Weekday::Monday,
+            nthWeekdayOfQuarter: -1
+        );
+
+        $result = $this->apply($jump, '2023-04-01T13:00:00');
+
+        self::assertEquals('2023-06-26T08:00:00', $result);
+
+        // Past it -> next quarter's last Monday (Q3 2023 ends 2023-09-30, last Monday is 2023-09-25)
+        $result = $this->apply($jump, '2023-06-26T12:00:00');
+
+        self::assertEquals('2023-09-25T08:00:00', $result);
+    }
+
     private function apply(Jump $jump, string $dateTime): string
     {
         $string = service(JumpManager::class)

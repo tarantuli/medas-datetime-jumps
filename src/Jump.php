@@ -27,6 +27,14 @@ readonly class Jump
          * -2 = second to last...
          */
         public int          $nthWeekdayOfMonth = 1,
+
+        /**
+         *  1 = first week day of the quarter  \
+         *  2 = second...  \
+         * -1 = last week day of the quarter \
+         * -2 = second to last...
+         */
+        public int          $nthWeekdayOfQuarter = 1,
     )
     {
     }

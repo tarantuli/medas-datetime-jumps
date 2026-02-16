@@ -14,21 +14,21 @@ class NthWeekdayOfMonth
     {
         $sourceTime = $source->format('H:i:s');
         $targetTime = $jump->time->hhmmss();
-        $targetDay = $this->getDayInSourceMonth($jump, $source);
+        $targetDay = $this->getDayInMonth($jump, $source);
         $sourceDay = (int) $source->format('j');
 
         if ($sourceDay >= $targetDay && ($sourceDay !== $targetDay || $sourceTime >= $targetTime)) {
             // Jump to that target day in the *next* month
             $source->modify('next month');
 
-            $targetDay = $this->getDayInSourceMonth($jump, $source);
+            $targetDay = $this->getDayInMonth($jump, $source);
             $sourceDay = (int) $source->format('j');
         }
 
         $source->modify(($targetDay - $sourceDay) . ' day')->modify($targetTime);
     }
 
-    private function getDayInSourceMonth(Jump $jump, \DateTime $source): int
+    private function getDayInMonth(Jump $jump, \DateTime $source): int
     {
         if ($jump->nthWeekdayOfMonth >= 1) {
             $firstWeekdayInMonth

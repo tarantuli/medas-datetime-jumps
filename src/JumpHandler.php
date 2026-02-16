@@ -53,6 +53,15 @@ readonly class JumpHandler implements PropertyHandler
             ]);
         }
 
+        if ($value->type === Type::NthWeekdayOfQuarter) {
+            return json_encode([
+                'type' => $value->type,
+                'time' => $time,
+                'weekday' => $value->weekday->value,
+                'nthWeekdayOfQuarter' => $value->nthWeekdayOfQuarter,
+            ]);
+        }
+
         if ($value->type === Type::NextDayOfWeek) {
             return json_encode([
                 'type' => $value->type,
@@ -114,6 +123,26 @@ readonly class JumpHandler implements PropertyHandler
                 time: $time,
                 weekday: Weekday::from($data['weekday']),
                 nthWeekdayOfMonth: $data['nthWeekdayOfMonth'],
+            );
+        }
+
+        if ($data['type'] === Type::NthWeekdayOfQuarter->value) {
+            if (!array_key_exists('weekday', $data)) {
+                throw new Exceptions\CannotUnserializeValueToJump($value, 'weekday is not set');
+            }
+
+            if (!array_key_exists('nthWeekdayOfQuarter', $data)) {
+                throw new Exceptions\CannotUnserializeValueToJump(
+                    $value,
+                    'nthWeekdayOfQuarter is not set'
+                );
+            }
+
+            return new Jump(
+                type: Type::NthWeekdayOfQuarter,
+                time: $time,
+                weekday: Weekday::from($data['weekday']),
+                nthWeekdayOfQuarter: $data['nthWeekdayOfQuarter'],
             );
         }
 

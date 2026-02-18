@@ -13,8 +13,9 @@ class TimeJump
     public function apply(Jump $jump, \DateTime $source): void
     {
         $targetTime = $jump->time->hhmmss();
+        $targetTimestamp = $jump->time->timestamp();
 
-        if ($source->format('H:i:s') >= $targetTime) {
+        if ($source->getTimestamp() >= $targetTimestamp) {
             $source->modify('+1 day ' . $targetTime);
         }
         else {

@@ -13,12 +13,12 @@ class NextDayOfWeek
     public function apply(Jump $jump, \DateTime $source): void
     {
         $sourceWeekday = Weekday::from((int) $source->format('N'));
-        $sourceTime = $source->format('H:i:s');
         $targetWeekday = $jump->weekday;
         $targetTime = $jump->time->hhmmss();
+        $targetTimestamp = $jump->time->timestamp();
 
         if ($sourceWeekday === $targetWeekday) {
-            if ($sourceTime < $targetTime) {
+            if ($source->getTimestamp() < $targetTimestamp) {
                 $source->modify($targetTime);
             }
             else {

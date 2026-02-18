@@ -10,13 +10,16 @@ use Medas\DateTimeJumps\Jump;
 #[Service]
 class NthWeekdayOfQuarter
 {
+    private const int DAYS_IN_WEEK = 7;
+    private const int MONTHS_IN_QUARTER = 3;
+
     public function apply(Jump $jump, \DateTime $source): void
     {
         $target = $this->getTargetDateTimeInQuarter($jump, $source);
 
         // If we've already reached/passed the target moment, jump to the next quarter's target.
         if ($source->getTimestamp() >= $target->getTimestamp()) {
-            $nextQuarterStart = $this->getQuarterStart($source)->modify('+3 months');
+            $nextQuarterStart = $this->getQuarterStart($source)->modify(sprintf("+%d months", self::MONTHS_IN_QUARTER));
             $target = $this->getTargetDateTimeInQuarter($jump, $nextQuarterStart);
         }
 
@@ -27,15 +30,15 @@ class NthWeekdayOfQuarter
     {
         $targetTime = $jump->time->hhmmss();
         $quarterStart = $this->getQuarterStart($inQuarter);
-        $quarterEnd = (clone $quarterStart)->modify('+3 months')->modify('-1 day');
+        $quarterEnd = (clone $quarterStart)->modify(sprintf("+%d months", self::MONTHS_IN_QUARTER))->modify('-1 day');
 
         if ($jump->nthWeekdayOfQuarter >= 1) {
             $first = $this->firstWeekdayOnOrAfter($quarterStart, $jump->weekday->name);
-            $target = $first->modify('+' . (7 * ($jump->nthWeekdayOfQuarter - 1)) . ' days');
+            $target = $first->modify('+' . (self::DAYS_IN_WEEK * ($jump->nthWeekdayOfQuarter - 1)) . ' days');
         }
         else {
             $last = $this->lastWeekdayOnOrBefore($quarterEnd, $jump->weekday->name);
-            $target = $last->modify('-' . (7 * (abs($jump->nthWeekdayOfQuarter) - 1)) . ' days');
+            $target = $last->modify('-' . (self::DAYS_IN_WEEK * (abs($jump->nthWeekdayOfQuarter) - 1)) . ' days');
         }
 
         $target->modify($targetTime);
@@ -49,7 +52,7 @@ class NthWeekdayOfQuarter
         $month = (int) $source->format('n');
 
         // 1,4,7,10
-        $quarterStartMonth = (int) (1 + 3 * intdiv($month - 1, 3));
+        $quarterStartMonth = (int) (1 + self::MONTHS_IN_QUARTER * intdiv($month - 1, self::MONTHS_IN_QUARTER));
         $start = clone $source;
 
         $start->setDate((int) $source->format('Y'), $quarterStartMonth, 1);

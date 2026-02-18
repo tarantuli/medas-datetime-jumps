@@ -84,6 +84,13 @@ readonly class JumpHandler implements PropertyHandler
 
         $data = json_decode($value, true);
 
+        if (!is_array($data)) {
+            throw new Exceptions\CannotUnserializeValueToJump(
+                $value,
+                'is not a JSON encoded array'
+            );
+        }
+
         if ($data['type'] === Type::MultipleTimesOfDay->value) {
             if (!array_key_exists('times', $data)) {
                 throw new Exceptions\CannotUnserializeValueToJump($value, 'times is not set');

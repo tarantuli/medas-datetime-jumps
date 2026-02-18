@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace Medas\DateTimeJumps\Appliers;
 
 use Medas\Core\Attributes\Service;
-use Medas\DateTimeJumps\Jump;
+use Medas\DateTimeJumps\{Exceptions\TimesIsNotSet, Jump};
 
 #[Service]
 class TimesOfDay
 {
     public function apply(Jump $jump, \DateTime $source): void
     {
+        if (!array_key_exists(0, $jump->times)) {
+            throw new TimesIsNotSet($jump);
+        }
+
         $sourceTime = $source->format('H:i:s');
 
         foreach ($jump->times as $time) {

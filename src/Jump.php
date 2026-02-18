@@ -37,5 +37,26 @@ readonly class Jump
         public int          $nthWeekdayOfQuarter = 1,
     )
     {
+        if ($this->times !== null) {
+            foreach ($this->times as $i => $time) {
+                if (!$time instanceof Time) {
+                    throw new Exceptions\InvalidTimeParameterPassed(
+                        $i,
+                        $time,
+                    );
+                }
+            }
+        }
+
+        if ($this->weekdays !== null) {
+            foreach ($this->weekdays as $i => $weekday) {
+                if (!$weekday instanceof Weekday) {
+                    throw new Exceptions\InvalidWeekdayParameterPassed(
+                        $i,
+                        $weekday,
+                    );
+                }
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ class TimeIsNotSet extends BaseException
 {
     public function __construct(Jump $jump)
     {
-        parent::__construct(serialize($jump));
+        parent::__construct(json_encode($jump));
     }
 
     public function pattern(): string

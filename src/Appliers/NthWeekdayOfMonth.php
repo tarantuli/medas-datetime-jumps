@@ -10,6 +10,8 @@ use Medas\DateTimeJumps\Jump;
 #[Service]
 class NthWeekdayOfMonth
 {
+    private const int DAYS_IN_WEEK = 7;
+
     public function apply(Jump $jump, \DateTime $source): void
     {
         $sourceTime = $source->format('H:i:s');
@@ -36,13 +38,15 @@ class NthWeekdayOfMonth
             $firstWeekdayInMonth
                 = $sourceClone->modify('first ' . $jump->weekday->name . ' of ' . $sourceClone->format('F') . ' ' . $sourceClone->format('Y'));
 
-            return (int) $firstWeekdayInMonth->format('j') + 7 * ($jump->nthWeekdayOfMonth - 1);
+            return (int) $firstWeekdayInMonth->format('j')
+                + self::DAYS_IN_WEEK * ($jump->nthWeekdayOfMonth - 1);
         }
         else {
             $lastWeekdayInMonth
                 = $sourceClone->modify('last ' . $jump->weekday->name . ' of ' . $sourceClone->format('F') . ' ' . $sourceClone->format('Y'));
 
-            return (int) $lastWeekdayInMonth->format('j') + 7 * ($jump->nthWeekdayOfMonth + 1);
+            return (int) $lastWeekdayInMonth->format('j')
+                + self::DAYS_IN_WEEK * ($jump->nthWeekdayOfMonth + 1);
         }
     }
 }

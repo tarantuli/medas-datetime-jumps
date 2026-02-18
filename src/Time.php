@@ -12,12 +12,16 @@ readonly class Time
         public int $second = 0,
     )
     {
+        if ($this->hour < 0 || $this->hour > 29) {
+            throw new Exceptions\InvalidHourPassed($this->hour);
+        }
+
         if ($this->minute < 0 || $this->minute > 59) {
-            throw new Exceptions\InvalidMinutesPassed($this->minute);
+            throw new Exceptions\InvalidMinutePassed($this->minute);
         }
 
         if ($this->second < 0 || $this->second > 59) {
-            throw new Exceptions\InvalidSecondsPassed($this->second);
+            throw new Exceptions\InvalidSecondPassed($this->second);
         }
     }
 
@@ -28,6 +32,6 @@ readonly class Time
 
     public function timestamp(): int
     {
-        return mktime($this->hour, $this->minute, $this->second);
+        return $this->hour * 3600 + $this->minute * 60 + $this->second;
     }
 }

@@ -10,7 +10,7 @@ class ValueMustBeInstanceOfJump extends BaseException
 {
     public function __construct(mixed $value)
     {
-        parent::__construct(gettype($value));
+        parent::__construct(get_debug_type($value));
     }
 
     public function pattern(): string

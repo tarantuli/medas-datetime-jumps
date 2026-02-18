@@ -15,10 +15,9 @@ class NextDayOfWeek
         $sourceWeekday = Weekday::from((int) $source->format('N'));
         $targetWeekday = $jump->weekday;
         $targetTime = $jump->time->hhmmss();
-        $targetTimestamp = $jump->time->timestamp();
 
         if ($sourceWeekday === $targetWeekday) {
-            if ($source->getTimestamp() < $targetTimestamp) {
+            if ($this->timestamp($source) < $jump->time->timestamp()) {
                 $source->modify($targetTime);
             }
             else {
@@ -28,5 +27,12 @@ class NextDayOfWeek
         else {
             $source->modify($targetWeekday->name . ' ' . $targetTime);
         }
+    }
+
+    private function timestamp(\DateTime $date): int
+    {
+        return (3600 * (int) $date->format('H'))
+            + 60 * (int) $date->format('i')
+            + (int) $date->format('s');
     }
 }

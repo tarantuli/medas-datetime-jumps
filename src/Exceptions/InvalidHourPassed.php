@@ -6,7 +6,7 @@ namespace Medas\DateTimeJumps\Exceptions;
 
 use Medas\Core\Exceptions\BaseException;
 
-class InvalidMinutesPassed extends BaseException
+class InvalidHourPassed extends BaseException
 {
     public function __construct(int $amount)
     {
@@ -15,6 +15,6 @@ class InvalidMinutesPassed extends BaseException
 
     public function pattern(): string
     {
-        return 'invalid amount of minutes passed: %s';
+        return 'invalid hour paramter passed: %s';
     }
 }

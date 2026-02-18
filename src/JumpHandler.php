@@ -91,6 +91,10 @@ readonly class JumpHandler implements PropertyHandler
             );
         }
 
+        if (!array_key_exists('type', $data)) {
+            throw new Exceptions\CannotUnserializeValueToJump($value, '"type" is not set');
+        }
+
         if ($data['type'] === Type::MultipleTimesOfDay->value) {
             if (!array_key_exists('times', $data)) {
                 throw new Exceptions\CannotUnserializeValueToJump($value, 'times is not set');
@@ -98,8 +102,16 @@ readonly class JumpHandler implements PropertyHandler
 
             $times = [];
 
-            foreach ($data['times'] as $time) {
+            foreach ($data['times'] as $index => $time) {
                 $parts = explode(':', $time);
+
+                if (count($parts) !== 3) {
+                    throw new Exceptions\CannotUnserializeValueToJump(
+                        $value,
+                        "times at index $index is invalid"
+                    );
+                }
+
                 $times[] = new Time((int) $parts[0], (int) $parts[1], (int) $parts[2]);
             }
 
@@ -111,6 +123,11 @@ readonly class JumpHandler implements PropertyHandler
         }
 
         $parts = explode(':', $data['time']);
+
+        if (count($parts) !== 3) {
+            throw new Exceptions\CannotUnserializeValueToJump($value, "time value is invalid");
+        }
+
         $time = new Time((int) $parts[0], (int) $parts[1], (int) $parts[2]);
 
         if ($data['type'] === Type::NthWeekdayOfMonth->value) {

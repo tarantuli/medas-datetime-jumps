@@ -6,7 +6,7 @@ namespace Medas\DateTimeJumps\Exceptions;
 
 use Medas\Core\Exceptions\BaseException;
 
-class InvalidSecondsPassed extends BaseException
+class InvalidNthWeekdayValue extends BaseException
 {
     public function __construct(int $amount)
     {
@@ -15,6 +15,6 @@ class InvalidSecondsPassed extends BaseException
 
     public function pattern(): string
     {
-        return 'invalid amount of seconds passed: %s';
+        return 'invalid nth weekday parameter passed: %s';
     }
 }

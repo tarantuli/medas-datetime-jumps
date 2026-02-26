@@ -12,7 +12,7 @@ readonly class Time
         public int $second = 0,
     )
     {
-        if ($this->hour < 0 || $this->hour > 29) {
+        if ($this->hour < 0 || $this->hour > 23) {
             throw new Exceptions\InvalidHourPassed($this->hour);
         }
 

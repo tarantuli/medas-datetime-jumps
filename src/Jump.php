@@ -63,11 +63,11 @@ readonly class Jump
             }
         }
 
-        if (abs($this->nthWeekdayOfMonth) > 5) {
+        if ($this->nthWeekdayOfMonth === 0 || abs($this->nthWeekdayOfMonth) > 5) {
             throw new Exceptions\InvalidNthWeekdayValue($this->nthWeekdayOfMonth);
         }
 
-        if (abs($this->nthWeekdayOfQuarter) > 15) {
+        if ($this->nthWeekdayOfQuarter === 0 || abs($this->nthWeekdayOfQuarter) > 15) {
             throw new Exceptions\InvalidNthWeekdayValue($this->nthWeekdayOfQuarter);
         }
     }

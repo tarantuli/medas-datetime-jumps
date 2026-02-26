@@ -15,6 +15,6 @@ class InvalidHourPassed extends BaseException
 
     public function pattern(): string
     {
-        return 'invalid hour paramter passed: %s';
+        return 'invalid hour parameter passed: %s';
     }
 }

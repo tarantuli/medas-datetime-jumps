@@ -12,7 +12,7 @@ class TimesOfDay
 {
     public function apply(Jump $jump, \DateTime $source): void
     {
-        if (!array_key_exists(0, $jump->times)) {
+        if ($jump->times === null || !array_key_exists(0, $jump->times)) {
             throw new TimesIsNotSet($jump);
         }
 

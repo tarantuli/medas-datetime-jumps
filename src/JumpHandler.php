@@ -30,6 +30,10 @@ readonly class JumpHandler implements PropertyHandler
         }
 
         if ($value->type === Type::MultipleTimesOfDay) {
+            if ($value->times === null) {
+                throw new Exceptions\TimesIsNotSet($value);
+            }
+
             $times = [];
 
             foreach ($value->times as $time) {
@@ -40,6 +44,10 @@ readonly class JumpHandler implements PropertyHandler
                 'type' => $value->type,
                 'times' => $times,
             ]);
+        }
+
+        if ($value->time === null) {
+            throw new Exceptions\TimeIsNotSet($value);
         }
 
         $time = $value->time->hhmmss();
@@ -179,6 +187,13 @@ readonly class JumpHandler implements PropertyHandler
                 type: Type::NextDayOfWeek,
                 time: $time,
                 weekday: Weekday::from($data['weekday']),
+            );
+        }
+
+        if ($data['type'] !== Type::TimeJump->value) {
+            throw new Exceptions\CannotUnserializeValueToJump(
+                $value,
+                sprintf('unknown type "%s"', $data['type'])
             );
         }
 

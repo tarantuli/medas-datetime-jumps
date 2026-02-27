@@ -20,7 +20,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Medas\\DateTimeJumps\\": "src/",
+      "Medas\\DateTimeJumps\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Medas\\DateTimeJumpsTest\\": "tests/"
     }
   }

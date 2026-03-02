@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Medas\DateTimeJumps;
 
+use Medas\Core\Attributes\DataHolder;
+
+#[DataHolder]
 readonly class Jump
 {
     public function __construct(
